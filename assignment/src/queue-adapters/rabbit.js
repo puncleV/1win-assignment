@@ -3,6 +3,7 @@ import { Logger } from '../logger';
 
 export class RabbitAdapter {
     constructor({ connection, logger }, { oddsChannel, queueName }) {
+        connection.on('connect', e => logger.error(`connected from rabbitmq: ${JSON.stringify(e)}`));
         connection.on('error', e => logger.error(`disconnected from rabbitmq: ${JSON.stringify(e)}`));
         connection.on('disconnect', e => logger.error(`disconnected from rabbitmq: ${JSON.stringify(e)}`));
 
@@ -17,7 +18,13 @@ export class RabbitAdapter {
             setup: channel => Promise.all([
                 channel.assertQueue(config.ODDS_QUEUE_NAME, {durable: true}),
                 channel.prefetch(config.PREFETCH),
-                channel.consume(config.ODDS_QUEUE_NAME, messageHandler)
+                channel.consume(config.ODDS_QUEUE_NAME, async (data) => {
+                    const message = JSON.parse(data.content.toString());
+
+                    await messageHandler(message);
+
+                    channel.ack(data);
+                } )
             ]),
         });
 

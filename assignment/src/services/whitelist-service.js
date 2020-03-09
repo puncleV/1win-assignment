@@ -27,6 +27,10 @@ export class WhitelistService {
     async disable(groupId, reason) {
         await this.whitelistRepository.updateByGroupId(groupId, {enabled: false, reason});
 
-        this.storage.set(groupId, null)
+        this.storage.set(groupId, null);
+    }
+
+    clearCache(groupId) {
+        this.storage.set(groupId);
     }
 }

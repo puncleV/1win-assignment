@@ -14,6 +14,7 @@ router.put('/:groupId/:version', async ctx => {
         version: ctx.params.version,
     }, ctx.request.body);
 
+    ctx.services.whitelistService.clearCache(ctx.params.groupId);
     ctx.body = {};
 });
 

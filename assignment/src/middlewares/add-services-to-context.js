@@ -1,4 +1,5 @@
 import {whitelistRepository} from "./add-repositories-to-context";
+import {WhitelistService} from "../services/whitelist-service";
 
 export const whitelistService = new WhitelistService({whitelistRepository});
 
