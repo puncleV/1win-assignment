@@ -9,8 +9,7 @@ const pool = mysql.createPool({
   user: config.database.user,
   charset: 'utf8mb4',
   password: config.database.password,
-  database: config.database.name,
-  debug: true
+  database: config.database.name
 });
 
 pool.queryRow = (...args) => pool.query(...args).then(r => r[0]);
