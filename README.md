@@ -1,6 +1,9 @@
 #**1WIN TEST ASSIGNMENT**
 
+
 ###Conditions
+
+
 You have a microservice architecture and lets say you have a data source with sport odds which will send you data via RabbitMQ with two message types:
 
     Odds data message:
@@ -25,6 +28,7 @@ You have a microservice architecture and lets say you have a data source with sp
 
 You don't know list of possible group IDs
 
+
 ###Task
 You have to write a backend for an administrator panel to manage a whitelist for odds groups with next requirements:
 
@@ -33,6 +37,7 @@ You have to write a backend for an administrator panel to manage a whitelist for
 3. By default all new groups should be disabled
 4. Admin can't enable\disable group if you have received Disable group message until you read a reason
 5. (Optional) add a possibility to run your backend in multiple instances
+
 
 ###Tools and libraries
 
@@ -43,6 +48,7 @@ You are able to use whatever you want but we would like to see:
 3. In case of multiple instances we would like to see Reddis
 
 Feel free to contact us and ask any questions before you start
+
 
 ###Estimate
 
