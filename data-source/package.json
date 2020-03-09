@@ -1,0 +1,23 @@
+{
+  "name": "data-source",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-modules --es-module-specifier-resolution=node ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kozlov Viktor",
+  "license": "MIT",
+  "dependencies": {
+    "amqp-connection-manager": "3.2.0",
+    "amqplib": "^0.5.5",
+    "casual": "^1.6.2"
+  },
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.20.1"
+  }
+}
