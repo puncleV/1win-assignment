@@ -5,6 +5,7 @@ export const config = {
     HOST: process.env.RABBIT_HOST || "localhost",
     PORT: 5672,
     ODDS_QUEUE_NAME: 'odds',
+    PREFETCH: 1,
   },
   database: {
     host: process.env.DATABASE_HOST || "localhost",

@@ -7,6 +7,7 @@ import {
 } from './middlewares';
 import {addRepositoriesToContext} from "./middlewares";
 import {whitelistRouter} from "./router/whitelist";
+import {addServicesToContext} from "./middlewares/add-services-to-context";
 
 const app = new Koa();
 
@@ -16,6 +17,7 @@ app
     .use(errorHandler)
     .use(bodyParser())
     .use(addRepositoriesToContext)
+    .use(addServicesToContext)
     .use(whitelistRouter.routes())
     .use(whitelistRouter.allowedMethods());
 
