@@ -9,7 +9,7 @@ router.get('/', async ctx => {
 });
 
 router.put('/:groupId/:version', async ctx => {
-    await ctx.repositories.whitelistRepository.updateByGroupId({
+    await ctx.repositories.whitelistRepository.updateByGroupIdAndVersion({
         groupId: ctx.params.groupId,
         version: ctx.params.version,
     }, ctx.request.body);
