@@ -9,15 +9,15 @@ export class Logger {
     return `${this.namespace} [${new Date().toISOString()}]: `;
   }
 
-  info(message) {
-    console.log(this.prefix, message);
+  info(...message) {
+    console.log(this.prefix, ...message);
   }
 
-  debug(message) {
-    console.debug(this.prefix, message);
+  debug(...message) {
+    console.debug(this.prefix, ...message);
   }
 
-  error(message) {
-    console.error(this.prefix, message);
+  error(...message) {
+    console.error(this.prefix, ...message);
   }
 }

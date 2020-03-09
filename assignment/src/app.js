@@ -1,5 +1,5 @@
 import { server } from './server';
-import {config} from '../config';
+import { config } from '../config';
 
 server.listen(config.port);
 // eslint-disable-next-line no-console
