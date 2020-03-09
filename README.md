@@ -10,6 +10,7 @@ You have a microservice architecture and lets say you have a data source with sp
 ```text
 [
     {
+      matchId: number,
       group: number,
       odds: [number, number],
     },
