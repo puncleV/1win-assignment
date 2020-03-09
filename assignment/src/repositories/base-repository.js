@@ -9,19 +9,11 @@ export class BaseRepository {
   }
 
   async create(fields) {
-    try {
-      const { insertId: id } = await (this.connection.queryRow('INSERT INTO ?? SET ?', [this.tableName, fields]));
+    const { insertId: id } = await (this.connection.queryRow('INSERT INTO ?? SET ?', [this.tableName, fields]));
 
-      return {
-        id,
-      };
-    } catch (e) {
-      if (e.code === 'ER_DUP_ENTRY') {
-        throw new Error('Entity already exists');
-      }
-
-      throw e;
-    }
+    return {
+      id,
+    };
   }
 
   async updateById(id, fields) {

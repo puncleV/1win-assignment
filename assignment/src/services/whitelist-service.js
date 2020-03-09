@@ -1,13 +1,18 @@
+import _ from 'lodash';
+export const DEFAULT_ENABLED_STATE = false;
+
 export class WhitelistService {
     constructor({storage = new Map(), whitelistRepository}) {
         this.storage = storage;
         this.whitelistRepository = whitelistRepository;
+
+        this.addGroup = _.memoize(this._addGroup.bind(this))
     }
 
     async get(groupId) {
         const cached = this.storage.get(groupId);
 
-        if (cached !== null) {
+        if (cached != null) {
             return cached;
         }
 
@@ -18,10 +23,26 @@ export class WhitelistService {
         return requestedPromise;
     }
 
-    async isEnabled(groupId) {
-        const { enabled } = (await this.get(groupId)) || {};
+    async _addGroup(groupId) {
+        try {
+            return await this.whitelistRepository.create({ groupId })
+        } catch (e) {
+            if (e.code !== 'ER_DUP_ENTRY') {
+                throw e;
+            }
+        }
+    }
 
-        return enabled === 1;
+    async isEnabled(groupId) {
+        const group  = (await this.get(groupId));
+
+        if (group != null) {
+            return group.enabled === 1;
+        }
+
+        await this.addGroup(groupId);
+
+        return DEFAULT_ENABLED_STATE;
     }
 
     async disable(groupId, reason) {

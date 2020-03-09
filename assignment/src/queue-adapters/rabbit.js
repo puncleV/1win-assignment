@@ -12,6 +12,8 @@ export class RabbitAdapter {
     }
 
     static async create(config, messageHandler) {
+        const logger = new Logger(RabbitAdapter.name);
+
         const connection = await ampq.connect([`${config.PROTOCOL}://${config.HOST}:${config.PORT}`]);
         const oddsChannel = await connection.createChannel({
             json: true,
@@ -21,7 +23,11 @@ export class RabbitAdapter {
                 channel.consume(config.ODDS_QUEUE_NAME, async (data) => {
                     const message = JSON.parse(data.content.toString());
 
-                    await messageHandler(message);
+                    try {
+                        await messageHandler(message);
+                    } catch (e) {
+                        logger.error(e);
+                    }
 
                     channel.ack(data);
                 } )
@@ -31,7 +37,7 @@ export class RabbitAdapter {
         oddsChannel.waitForConnect();
 
         return new RabbitAdapter(
-            { connection, logger: new Logger(RabbitAdapter.name) },
+            { connection, logger },
             { oddsChannel, queueName: config.ODDS_QUEUE_NAME },
         );
     }

@@ -8,7 +8,7 @@ export class WhiteListRepository extends BaseRepository {
     }
 
     async getByGroupId(groupId) {
-        return this.get({groupId});
+        return (await this.get({groupId}))[0];
     }
 
     async updateByGroupIdAndVersion({groupId, version}, {enabled, reason = null}) {
@@ -29,15 +29,11 @@ export class WhiteListRepository extends BaseRepository {
     async updateByGroupId(groupId, {enabled, reason = null}) {
         const keyEntries = Object.entries({groupId});
 
-        const {changedRows} = await (
+        await (
             this.connection.queryRow(
                 `UPDATE ?? SET version = version + 1, ? WHERE ${this.prepareWhereStatement(keyEntries.length)};`,
                 [this.tableName, {enabled, reason}, ..._.flatten(keyEntries)],
             )
         );
-
-        if (changedRows === 0) {
-            throw new Error(`There is not group ${groupId} with version ${version}`)
-        }
     }
 }
