@@ -17,13 +17,4 @@ router.put('/:groupId/:version', async ctx => {
     ctx.body = {};
 });
 
-router.post('/', async ctx => {
-    ctx.body = (await ctx.repositories.whitelistRepository.create(ctx.request.body));
-});
-
-router.delete('/:sportId', async ctx => {
-    ctx.body = (await ctx.repositories.whitelistRepository.deleteById(ctx.params.sportId));
-});
-
-
 export const whitelistRouter = router;
