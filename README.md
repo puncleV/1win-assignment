@@ -21,10 +21,10 @@ You have a microservice architecture and lets say you have a data source with sp
     Disable group message: 
     
 ```text
-{
+[{
   group: number,
   reason: string,
-}
+}, ...]
 ```
 
 You don't know list of possible group IDs
