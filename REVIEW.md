@@ -10,9 +10,11 @@
 5. Injection handling - 1 point (if mysql)
 6. (Optional) using Reddis for cache - 2 points
 
-###Nice to have
+###Nice to have 0.5 extra points each
 
 1. No ORM
 2. docker-compose
 3. tests
 4. linter
+5. using abstract logger
+6. hidden database errors
