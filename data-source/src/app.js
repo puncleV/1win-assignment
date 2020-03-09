@@ -10,7 +10,7 @@ const getMatches = () => {
   return MATCHES.filter(m => m % randomFactor === 0);
 };
 const getGroups = () => {
-  const randomFactor = casual.integer(0, 5);
+  const randomFactor = casual.integer(8, 10);
   return GROUPS.filter(m => m % randomFactor === 0);
 };
 const generateOddsMessage = () => getMatches().reduce((a, matchId) => a.concat(getGroups().map(group => ({
@@ -25,13 +25,19 @@ const main = async () => {
 
   setInterval(async () => {
     // eslint-disable-next-line no-console
-    await rabbitAdapter.send(generateOddsMessage());
+    await rabbitAdapter.send({
+      type: 'odds',
+      data: generateOddsMessage(),
+    });
   }, 500);
 
   setInterval(async () => {
     // eslint-disable-next-line no-console
-    await rabbitAdapter.send(generateDisableMessages());
-  }, 1000);
+    await rabbitAdapter.send({
+      type: 'disable_odds',
+      data: generateDisableMessages(),
+    });
+  }, 5000);
 };
 
 main();
