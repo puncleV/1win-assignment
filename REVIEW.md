@@ -1,6 +1,6 @@
-#REVIEW GUIDE
+# REVIEW GUIDE
 
-###Main 
+### Main 
 **9 (12 optional) points max**
 
 1. Clean code (DRY, KISS) - 2 points
@@ -11,7 +11,7 @@
 5. Injection handling - 1 point (if mysql)
 6. (Optional) using Reddis for cache - 2 points
 
-###Nice to have 0.5 extra points each
+### Nice to have 0.5 extra points each
 
 1. No ORM
 2. docker-compose
