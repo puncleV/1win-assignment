@@ -1,12 +1,13 @@
-#**1WIN TEST ASSIGNMENT**
+# **1WIN TEST ASSIGNMENT**
 
 
-###Conditions
+### Conditions
 
 
 You have a microservice architecture and lets say you have a data source with sport odds which will send you data via RabbitMQ with two message types:
 
-    Odds data message:
+Odds data message:
+    
 ```text
 [
     {
@@ -18,7 +19,7 @@ You have a microservice architecture and lets say you have a data source with sp
 ]
 ```
    
-    Disable group message: 
+Disable group message: 
     
 ```text
 [{
@@ -30,7 +31,7 @@ You have a microservice architecture and lets say you have a data source with sp
 You don't know list of possible group IDs
 
 
-###Task
+### Task
 You have to write a backend for an administrator panel to manage a whitelist for odds groups with next requirements:
 
 1. You have to send Odds data messages into another service (better by rabbitmq, but you could mock it) but only if they are whitelisted
@@ -40,7 +41,7 @@ You have to write a backend for an administrator panel to manage a whitelist for
 5. (Optional) add a possibility to run your backend in multiple instances
 
 
-###Tools and libraries
+### Tools and libraries
 
 You are able to use whatever you want but we would like to see:
 
@@ -51,6 +52,6 @@ You are able to use whatever you want but we would like to see:
 Feel free to contact us and ask any questions before you start
 
 
-###Estimate
+### Estimate
 
 It's pretty simple task so it won't take longer then 4 hours
